@@ -18,4 +18,5 @@ router
   .get(aptitudeController.getQuestion)
   .patch(aptitudeController.updateQuestion);
 
+router.route('/aptitude/contests').get(aptitudeController.getContests);
 module.exports = router;
