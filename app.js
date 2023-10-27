@@ -6,6 +6,7 @@ const errorController = require('./Controller/errorController');
 const userRouter = require('./Routes/userRoutes');
 const resultRouter = require('./Routes/resultRoutes');
 const aptitudeRouter = require('./Routes/aptitudeRoutes');
+const profileRouter = require('./Routes/profileRoutes');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/api/v1/aptitude-dsa/user', userRouter);
 app.use('/api/v1/aptitude-dsa/result', resultRouter);
 app.use('/api/v1/aptitude-dsa/question-answers', aptitudeRouter);
+app.use('/api/v1/aptitude-dsa/profile', profileRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
