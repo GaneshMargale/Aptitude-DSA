@@ -106,3 +106,24 @@ exports.createAnswers = catchAsync(async (req, res, next) => {
     Answers: newAnswer,
   });
 });
+
+exports.getContests = catchAsync(async (req, res, next) => {
+  const contests = await Aptitude.find();
+  let contest = [];
+
+  contests.forEach((document) => contest.push(document.contestNumber));
+
+  res.status(200).json({
+    status: 'success',
+    contests: contest.length,
+    data: {
+      Contest: contest,
+    },
+  });
+});
+
+// exports.getAnswersAndQuestions = catchAsync(async (req, res, next) => {
+//   const answer = await Answer.find();
+//   const question = await Aptitude.find();
+//   const QnA = [];
+// });
