@@ -11,23 +11,34 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Provide a name'],
   },
-  totalPoints: {
-    type: Number,
-    required: [true, 'Provide the points'],
+  branch: {
+    type: String,
+    required: [true, 'Please provide a branch'],
+    lowercase: true,
+    enum: {
+      values: ['cse', 'ece', 'ise'],
+      message: 'The type should cse, ece or ise',
+    },
   },
   DSAPoints: {
     type: Number,
     required: [true, 'Provide the points'],
+    default: 0,
   },
   AptitudePoints: {
     type: Number,
     required: [true, 'Provide the points'],
+    default: 0,
   },
   DSAEachPoints: [
     {
       contestNumber: {
         type: Number,
         required: [true, 'Provide the contest number'],
+      },
+      contestName: {
+        type: String,
+        required: [true, 'Provide a contest name'],
       },
       points: {
         type: Number,
@@ -40,6 +51,10 @@ const profileSchema = new mongoose.Schema({
       contestNumber: {
         type: Number,
         required: [true, 'Provide the contest number'],
+      },
+      contestName: {
+        type: String,
+        required: [true, 'Provide a contest name'],
       },
       points: {
         type: Number,

@@ -1,14 +1,21 @@
 const express = require('express');
 const resultController = require('../Controller/resultController');
+const authController = require('../Controller/authController');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(resultController.getAllResults)
+  .get(authController.protect, resultController.getAllResults)
   .post(resultController.createResult);
 
-router.route('/:contestNumber/:usn').get(resultController.getResult);
+router
+  .route('/:contestNumber/:usn')
+  .get(authController.protect, resultController.getResultByUsn);
 
-router.route('/:contestNumber').delete(resultController.deleteResult);
+router
+  .route('/:contestNumber')
+  .get(authController.protect, resultController.getResult)
+  .delete(resultController.deleteResult);
+
 module.exports = router;

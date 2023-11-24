@@ -5,23 +5,23 @@ const answerSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Provide a contest number'],
   },
-  contestType: {
+  contestName: {
     type: String,
-    required: [true, 'Provide a contest type'],
-    lowercase: true,
-    enum: {
-      values: ['aptitude', 'dsa'],
-      message: 'The type shoulde be aptitude or dsa',
+    required: [true, 'Provide a contest name'],
+  },
+
+  answers: [
+    {
+      questionNumber: {
+        type: Number,
+        required: [true, 'Provide Question Number'],
+      },
+      answerOption: {
+        type: String,
+        required: [true, 'Provide Answer Option'],
+      },
     },
-  },
-  questionNumber: {
-    type: Number,
-    required: [true, 'Provide Question Number'],
-  },
-  answerOption: {
-    type: String,
-    required: [true, 'Provide Answer Option'],
-  },
+  ],
 });
 
 const Answer = mongoose.model('Answer', answerSchema);
